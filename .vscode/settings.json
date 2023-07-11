@@ -1,0 +1,21 @@
+{
+    "python.pythonPath": "C:\\Documents\\Desarrollo_WEB\\Python-Django\\Projects\\MarketPlace\\venv\\Scripts\\python.exe",
+    "python.linting.enabled": true,  
+    "python.linting.pylintPath": "pylint",
+    "python.linting.pylintEnabled": false,
+    "python.languageServer": "Pylance",
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.extraPaths": ["D:/Desarrollo_WEB/Python-Django/Projects/login_test/venv/Lib/site-packages/"], /* Adaptar esta línea al path "site-packages" del entorno virtual*/
+    "python.linting.pycodestyleEnabled": true, 
+    "python.analysis.useImportHeuristic": true,    
+    "python.linting.pycodestyleArgs": ["--ignore=E501,E226,E116"],
+    "python.linting.pylamaArgs": ["--errors-only", "--load-plugins", "pylint_django"],
+    "python.linting.pylintArgs": [                              
+        "--load-plugins=pylint_django",
+        "--disable=django-not-configured,missing-module-docstring,missing-class-docstring"
+    ],
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",  /*tener en cuenta que es necesario pip install -U black y tener instalada la extension Black Formater */
+    },
+    "python.formatting.provider": "black", /*tener en cuenta que es necesario pip install -U black y tener instalada la extension Black Formater*/
+}

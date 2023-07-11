@@ -1,0 +1,42 @@
+{% extends 'core/base.html' %}
+
+{% block title %}{{item.name}}{% endblock %}
+
+{% block content %}
+    
+    {% if "message_sent" in request.GET %}
+        <div id="alert" class="alert alert-success alert-dismissible fade show text-center container" role="alert">
+            Great! Your message has been sent to the seller.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endif %}
+        
+    <div class="container mt-5 p-3 d-flex justify-content-center gap-3">
+        <div class="container mt-5 p-3 d-flex justify-content-center" style="background-color: #EEEEEE">
+            <div class="card" style="width: 25rem;">
+                <img src="{{item.image.url}}" class="card-img-top" alt="item.name">
+            </div>
+        </div>
+        <div class="container mt-5 p-3" style="background-color: #EEEEEE;">
+            <h1>{{item.name}}</h1>
+            <p><strong>Price: ${{item.price}}</strong></p>
+            <p><strong>Seller: {{item.created_by.username}}</strong></p>
+            {% if item.description %}
+                <p><strong>Description:</strong><br> {{item.description}}</p>
+            {% endif %}
+            
+            {% if request.user == item.created_by %}
+                <a href="{% url 'edit' item.id %}"><button type="button" class="btn btn-warning">Edit</button></a>
+                <a href="{% url 'delete' item.id %}"><button type="button" class="btn btn-danger">Delete</button></a>
+            {% else %}
+                <a href="{% url 'conversation:new' item.id %}"><button type="button" class="btn btn-success">Contact Seller</button></a>
+            {% endif %}
+    
+        </div>
+    </div>
+    <script>
+        setTimeout(() => {
+            document.getElementById('alert').style.display = 'none';
+        }, 3000);
+    </script>
+{% endblock %}

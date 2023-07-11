@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <title>{% block title %}{% endblock title %}</title>
+</head>
+<style>
+    .nav-item{
+        margin-right: 0.5em;
+    }
+</style>
+<body>
+    <div class="container d-flex justify-content-center">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width: 100%;">
+            <div class="container-fluid">
+                <a class="navbar-brand fst-italic" href="{% url 'home' %}" style="font-size: 2em;">
+                    <i style="color: #0d6efd;" class="bi bi-shop"></i> MyMarketPlace
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav d-flex justify-content-around">
+                        <li class="nav-item">
+                        <a class="btn btn-secondary" href="{% url 'new_item' %}">New item</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="btn btn-danger" href="{% url 'search' %}">Browse</a>
+                        </li>
+                        {% if request.user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="btn btn-secondary" href="{% url 'dashboard:index' %}">Dashboard</a>
+                            </li>    
+                            <li class="nav-item">
+                                <a class="btn btn-primary" href="{% url 'conversation:inbox' %}">Imbox</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn btn-secondary" href="{% url 'logout' %}">Logout</a>
+                            </li>    
+                            <li class="nav-item">
+                                <i class="bi bi-person-fill" style="font-size: 1.5em; color:#FF8551">
+                                    {{request.user}}
+                                </i>
+                            </li>    
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="btn btn-primary" href="{% url 'signup' %}">Sign up</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn btn-secondary" href="{% url 'login' %}">Login</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    {% block content %}{% endblock content %}
+    <!-- Footer --> 
+    <div class="mt-5">
+        <footer class="text-center text-white" style="background-color: #3f51b5">
+            <div class="container">
+            <section class="mt-5">
+                <div class="row text-center d-flex justify-content-center pt-5">
+                    <div class="col-md-2">
+                        <h6 class="text-uppercase font-weight-bold">
+                        <a href="{% url 'home' %}" class="text-white">Home</a>
+                        </h6>
+                    </div>
+                    <div class="col-md-2">
+                        <h6 class="text-uppercase font-weight-bold">
+                        <a href="#!" class="text-white">About us</a>
+                        </h6>
+                    </div>
+                    <div class="col-md-2">
+                        <h6 class="text-uppercase font-weight-bold">
+                        <a href="{% url 'contact' %}" class="text-white">Contact</a>
+                        </h6>
+                    </div>
+                    <div class="col-md-2">
+                        <h6 class="text-uppercase font-weight-bold">
+                        <a href="#!" class="text-white">Privacy policy</a>
+                        </h6>
+                    </div>
+                    <div class="col-md-2">
+                        <h6 class="text-uppercase font-weight-bold">
+                        <a href="#!" class="text-white">Term of use</a>
+                        </h6>
+                    </div>
+                </div>
+            </section>
+            <hr class="my-3" />
+
+            <section>
+                <div class="row d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <p style="text-align: left;">
+                        Welcome to our marketplace, your one-stop destination for all 
+                        your shopping needs. We take pride in offering a diverse range 
+                        of high-quality products to cater to every customer's taste and 
+                        preferences. Whether you're looking for fashion apparel, electronics, 
+                        home decor, or unique gifts, we've got you covered. Our platform 
+                        connects buyers and sellers from around the world, providing a seamless 
+                        shopping experience. Discover a wide selection of products, explore new trends, 
+                        and shop with confidence knowing that we prioritize customer satisfaction. 
+                    </p>
+                </div>
+                </div>
+            </section>
+
+            <!-- Section: Social -->
+            <section class="text-center mb-3">
+                <a href="#" class="text-white me-4"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="text-white me-4"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="text-white me-4"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="text-white me-4"><i class="bi bi-linkedin"></i></a>
+                <a href="#" class="text-white me-4"><i class="bi bi-github"></i></a>
+            </section>
+            <!-- Section: Social -->
+            </div>
+            <div class="text-center p-3"style="background-color: rgba(0, 0, 0, 0.2)">
+            © 20203 Copyright:
+            <a class="text-white" href="#">frako789@gmail.com</a>
+            </div>
+        </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Inbox{% endblock %}
+
+{% block content %}
+    <style>
+        img { width:5em;}
+        a{
+            text-decoration:none; 
+            color: #537188;
+        }
+    </style>
+    <h1 class="text-center mt-5 fst-normal mb-3" style="color: #537188">Conversations:</h1>
+    {% for conversation in conversations %}
+        <a href="{% url 'conversation:detail' conversation.id %}" class="container">
+            <div class="container p-3 rounded" style="background-color: #F6F6F6">
+                <img src="{{conversation.item.image.url}}" class="rounded d-block" alt="{{conversation.item.name}}">
+                {% for member in conversation.members.all %}
+                    {% if member != request.user %}
+                        <p><strong>{{member.username}}</strong> | {{conversation.modified_at}}</p>
+                        <p>{{ conversation.item.name }}</p>
+                    {% endif %}
+                {% endfor %}
+            </div>   
+        </a>
+    {% endfor %}
+{% endblock %}

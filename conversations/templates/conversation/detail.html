@@ -1,0 +1,67 @@
+{% extends 'core/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Messages{% endblock %}
+
+{% block content %}
+    <style>
+        .errorlist{color:red;} 
+        label{display:none}
+        .owner{
+            background-color: #F8E8EE;
+            width: 50%;
+            border-radius: 1em;
+            padding: 0.5em;
+            margin-bottom: 0.5em;
+        }
+        .otheruser{
+            background-color: #F6F6F6;
+            width: 50%;
+            border-radius: 1em;
+            padding: 0.5em;
+            margin-bottom: 0.5em;
+        }
+        .parent-container{
+            background-color: #8D8DAA;
+            display:flex;
+            margin-bottom: 1em;
+            align-items: center;
+            flex-direction: column;
+            width: 70%;
+            margin-right: auto;
+            margin-left: auto;
+            padding: 0.5em;
+        }
+        .parent-container>.otheruser{
+            margin-left: 20em;
+        }
+        .parent-container>.owner{
+            margin-right: 20em;
+        }
+    </style>
+    <h1 class="text-center mt-5 fst-normal mb-5" style="color: #537188">Messages:</h1>
+    
+    <div class="parent-container card">
+        {% for message in messages %}
+            <div class="{% if message.sender == request.user %}owner{% else %}otheruser{% endif %}">
+                <p><strong>@{{message.sender}}</strong> | {{message.created_at}}</p>
+                <p>{{message.message}}</p>
+            </div>
+        {% endfor %}
+    </div>
+    
+    <div class="container mt-5">
+        <form action="" method="POST" class="container text-center" style="width:80%;">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-primary" style="width: 100%; padding:0;">
+                <i class="bi bi-caret-right-fill" style="font-size: 2em;"></i>
+            </button>
+        </form>
+    </div>
+
+    <script>
+        const textarea = document.getElementById("id_message");
+        textarea.rows = "5";
+    </script>
+{% endblock %}

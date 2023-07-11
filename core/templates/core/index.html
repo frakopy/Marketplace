@@ -1,0 +1,52 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Home Page{% endblock title %}
+
+{% block content %}
+
+    <!-- {% if request.user.is_authenticated %}
+        <div class="container w-60">
+            <div class="alert alert-success alert-dismissible fade show d-flex justify-content-center" role="alert">
+                User loged in as <strong style="margin-left: 5px;">{{request.user.username}}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    {% endif %} -->
+    
+    <div class="container">
+        <h1 class="text-center mt-5 fst-normal mb-5" style="color: #537188">Newest Items</h1>
+        <div class="container p-3 d-flex gap-5 flex-wrap justify-content-center" style="background-color: #EEEEEE">
+            {% for item in items %}
+                <div class="card" style="width: 18rem;">
+                    <a href="{% url 'item_detail' item.id %}" style="text-decoration: none; color: black;">
+                        <img src="{{item.image.url}}" class="card-img-top" alt="item.name">
+                        <div class="card-body">
+                            <h5 class="card-title">{{item.name}}</h5>
+                            <p class="card-text">Price: ${{item.price}}</p>
+                            <a href="{% url 'item_detail' item.id %}" class="btn btn-primary">Item Details</a>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+        <h2 class="text-center mt-5 mb-5">Categories</h2>
+        <div class="container p-3 d-flex gap-5 flex-wrap justify-content-center" style="background-color: #EEEEEE">
+            {% for category in categories %}
+                <a href="{% url 'search' %}?catid={{category.id}}" style="text-decoration:none; color:black;">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{category.name}}</h5>
+                            <p class="card-text">{{category.items.count}} Items</p>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+    <script>
+        // Close the alert after 3 seconds
+        setTimeout(function() {
+            document.querySelector('.alert').remove();
+        }, 3000);
+    </script>
+{% endblock content %}

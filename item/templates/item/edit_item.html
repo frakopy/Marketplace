@@ -1,0 +1,18 @@
+{% extends 'core/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Edit Item{% endblock title %}
+
+{% block content %}
+    <style>.errorlist{color:red;}</style>
+    <h1 class="text-center mt-5 fst-normal mb-3" style="color: #537188">Edit Item</h1>
+    <div class="container d-flex justify-content-center">
+        <form action="" method='POST' class="card w-50 p-5" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form|crispy}}
+            <input class="btn btn-primary btn-lg mt-3" type="submit" value="Submit">
+        </form>
+    </div>
+{% endblock content %}
+    
+    

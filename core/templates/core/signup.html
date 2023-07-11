@@ -1,0 +1,18 @@
+{% extends 'core/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Signup{% endblock %}
+
+{% block content %}
+    <style>.errorlist{color:red;}</style>
+    <h1 class="text-center mt-5 mb-3">Signup-Form</h1>
+    <div class="container d-flex justify-content-center">
+        <form action="" method='POST' class="card w-50 p-5">
+            {% csrf_token %}
+            {{form|crispy}}
+            <input class="btn btn-primary btn-lg mt-3" type="submit" value="Submit">
+        </form>
+    </div>
+{% endblock %}
+    
+    
