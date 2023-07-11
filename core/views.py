@@ -14,8 +14,20 @@ def index(request):
     )
 
 
+def about(request):
+    return render(request, "core/about.html")
+
+
 def contact(request):
     return render(request, "core/contact.html")
+
+
+def privacy(request):
+    return render(request, "core/privacy.html")
+
+
+def term_of_use(request):
+    return render(request, "core/term.html")
 
 
 class CustomLoginView(LoginView):

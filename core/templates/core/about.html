@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}About Us Page{% endblock title %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-8">
+                <h2>About Us</h2>
+                <p>As a passionate Python Django developer, I am driven by my love for coding and my desire to create robust and efficient web applications. Python and Django have become the cornerstone of my development journey, providing me with the tools and frameworks to bring my ideas to life.
+                    With Python's clean syntax and powerful capabilities, I am able to write elegant and maintainable code that is both readable and efficient. The versatility of the language allows me to tackle a wide range of projects, from small-scale web applications to large-scale enterprise systems.
+                    Django, on the other hand, empowers me to build web applications rapidly and securely. Its batteries-included approach provides me with a rich set of features and tools right out of the box, saving me time and effort in the development process. The Django ORM (Object-Relational Mapping) allows me to work with databases seamlessly, while the templating engine simplifies the presentation layer.
+                    What truly fuels my passion for Python and Django development is the ability to bring ideas to life and create meaningful solutions. 
+                </p>
+                <p>
+                    In conclusion, as a passionate Python Django developer, I am committed to leveraging the power of these technologies to build innovative, robust, and efficient web applications that make a positive impact. I look forward to taking on new challenges, pushing boundaries, and continually honing my skills to deliver exceptional results.
+                </p>
+            </div>
+            <div class="col-md-4">
+                <img src="{% static 'core\images\man.jpg' %}" class="img-fluid rounded" alt="Man-Programing">
+            </div>
+        </div>
+    </div>
+{% endblock content %}
