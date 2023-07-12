@@ -2,15 +2,37 @@
 
 {% block title %}Search Items{% endblock %}
 
-{% block content %} 
+{% block content %}
+    <style>
+        @media (max-width: 900px) {
+            .search-cont{
+                flex-wrap: wrap !important;
+                
+            }
+            .search-cont > input{
+                width: 80% !important;
+                margin-bottom: 0.5em !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+            .search-cont > div{
+                width: 100% !important;
+                display: flex;
+                justify-content: center;
+                gap: 0.5em;
+            }
+        }
+    </style>
 
     <h1 class="text-center mt-5 mb-5 fst-normal" style="color: #537188">Search Items</h1>
     <div class="container d-flex justify-content-center mb-3">
         <form action="">
-            <div class="form-group d-flex gap-1">
-                <input style="width: 20em;" id="search" type="text" name="query" class="form-control text-center" value="{{query}}" placeholder="Type to Search">
-                <button type="submit" class="btn btn-primary">Search</button>
-                <a href="{% url 'search' %}" type="button" class="btn btn-secondary">Reset</a>
+            <div class="form-group d-flex search-cont">
+                <input style="width: 25em;" id="search" type="text" name="query" class="form-control text-center" value="{{query}}" placeholder="Type to Search">
+                <div class="container w-50">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                    <a href="{% url 'search' %}" type="button" class="btn btn-secondary">Reset</a>
+                </div>
             </div>
         </form>
     </div>
