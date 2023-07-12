@@ -4,14 +4,26 @@
 {% block title %}Conversation{% endblock %}
 
 {% block content %}
-    <style>.errorlist{color:red;}</style>
+    <style>
+        .errorlist{color:red;}
+
+        @media (max-width: 900px) {
+            .form{
+                width: 90% !important;
+            }
+        }
+    </style>
     <h1 class="text-center mt-5 fst-normal mb-3" style="color: #537188">Create New Conversation</h1>
     <div class="container d-flex justify-content-center">
-        <form action="" method='POST' class=" w-50 p-2">
+        <form action="" method='POST' class="w-50 p-2 form">
             {% csrf_token %}
             {{form|crispy}}
             <input class="btn btn-primary btn-lg mt-3 w-100" type="submit" value="Send">
         </form>
     </div>
+    <script>
+        const textArea = document.getElementById('id_message');
+        textArea.rows = "5";
+    </script>
 {% endblock %}
     
