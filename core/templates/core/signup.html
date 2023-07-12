@@ -4,9 +4,17 @@
 {% block title %}Signup{% endblock %}
 
 {% block content %}
-    <style>.errorlist{color:red;}</style>
+    <style>
+        .errorlist{color:red;}
+
+        @media (max-width: 575px) {
+            .cont-form > .card {
+                width: 90% !important;
+            }
+        }
+    </style>
     <h1 class="text-center mt-5 mb-3">Signup-Form</h1>
-    <div class="container d-flex justify-content-center">
+    <div class="container d-flex justify-content-center cont-form">
         <form action="" method='POST' class="card w-50 p-5">
             {% csrf_token %}
             {{form|crispy}}

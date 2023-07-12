@@ -4,9 +4,18 @@
 {% block title %}New Item{% endblock title %}
 
 {% block content %}
-    <style>.errorlist{color:red;}</style>
+    <style>
+        .errorlist{color:red;}
+
+        @media (max-width: 900px) {
+            .cont-form>.card{
+                width: 95% !important;
+
+            }
+        }
+    </style>
     <h1 class="text-center mt-5 fst-normal mb-3" style="color: #537188">Add New Item</h1>
-    <div class="container d-flex justify-content-center">
+    <div class="container d-flex justify-content-center cont-form">
         <form action="" method='POST' class="card w-50 p-5" enctype="multipart/form-data">
             {% csrf_token %}
             {{form|crispy}}

@@ -3,7 +3,13 @@
 {% block title %}{{item.name}}{% endblock %}
 
 {% block content %}
-    
+    <style>
+        @media (max-width: 900px) {
+            .parent-cont {
+                flex-wrap: wrap !important;
+            }
+        }
+    </style>
     {% if "message_sent" in request.GET %}
         <div id="alert" class="alert alert-success alert-dismissible fade show text-center container" role="alert">
             Great! Your message has been sent to the seller.
@@ -11,7 +17,7 @@
         </div>
     {% endif %}
         
-    <div class="container mt-5 p-3 d-flex justify-content-center gap-3">
+    <div class="container mt-5 p-3 d-flex justify-content-center gap-3 parent-cont">
         <div class="container mt-5 p-3 d-flex justify-content-center" style="background-color: #EEEEEE">
             <div class="card" style="width: 25rem;">
                 <img src="{{item.image.url}}" class="card-img-top" alt="item.name">

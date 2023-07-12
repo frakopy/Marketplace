@@ -8,22 +8,29 @@
     <title>{% block title %}{% endblock title %}</title>
 </head>
 <style>
-    .nav-item{
-        margin-right: 0.5em;
+    @media (max-width: 575px) {
+        .cont-nav{
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center!important;
+        }
+        .navbar-nav {
+            flex-direction: row !important;
+        }
+        .cont-nav > .cont-ul{
+            justify-content: center !important;
+        }
     }
 </style>
 <body>
     <div class="container d-flex justify-content-center">
         <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width: 100%;">
-            <div class="container-fluid">
+            <div class="container-fluid cont-nav">
                 <a class="navbar-brand fst-italic" href="{% url 'home' %}" style="font-size: 2em;">
                     <i style="color: #0d6efd;" class="bi bi-shop"></i> MyMarketPlace
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav d-flex justify-content-around">
+                <div class="collapse navbar-collapse d-flex justify-content-end cont-ul" id="navbarNav">
+                    <ul class="navbar-nav d-flex flex-wrap flex-sm-row flex-column gap-2">
                         <li class="nav-item">
                         <a class="btn btn-secondary" href="{% url 'new_item' %}">New item</a>
                         </li>
@@ -35,7 +42,7 @@
                                 <a class="btn btn-secondary" href="{% url 'dashboard:index' %}">Dashboard</a>
                             </li>    
                             <li class="nav-item">
-                                <a class="btn btn-primary" href="{% url 'conversation:inbox' %}">Imbox</a>
+                                <a class="btn btn-primary" href="{% url 'conversation:inbox' %}">Inbox</a>
                             </li>
                             <li class="nav-item">
                                 <a class="btn btn-secondary" href="{% url 'logout' %}">Logout</a>

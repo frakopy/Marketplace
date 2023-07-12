@@ -28,6 +28,12 @@
         text-decoration:none;
     }
 
+    @media (max-width: 575px) {
+        .cont-form > .card {
+            width: 90% !important;
+        }
+    }
+
 </style>
     {% if messages %}
         <ul class="list-unstyled">
@@ -43,7 +49,7 @@
             {% endfor %}
         </ul>
     {% endif %}
-    <div class="container d-flex justify-content-center mt-5">
+    <div class="container d-flex justify-content-center mt-5 cont-form">
         <form method="post" class="card w-50 p-5">
             {% csrf_token %}
             {{ form|crispy }}
