@@ -45,6 +45,14 @@ def inbox(request):
     return render(request, "conversation/inbox.html", {"conversations": conversations})
 
 
+def read_messages(request, messages):
+    for message in messages:
+        if message.sender != request.user:
+            if not message.read:
+                message.read = True
+                message.save()
+
+
 @login_required(login_url="login")
 def detail(request, conversation_pk):
     # Get the conversation for the current user, filtering by members to prevent other users from accessing
@@ -65,6 +73,9 @@ def detail(request, conversation_pk):
 
             # To update the attribute modified_at in the Conversation model
             conversation.save()
+
+    # Check if are messages to be read from the conversation
+    read_messages(request, messages)
 
     return render(
         request,

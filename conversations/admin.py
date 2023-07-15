@@ -21,7 +21,7 @@ admin.site.register(Conversation, ConversationAdmin)
 
 class ConversationMessageAdmin(admin.ModelAdmin):
     # Display specific columns to show in the panel
-    list_display = ("conversation", "sender", "message", "created_at")
+    list_display = ("conversation", "sender", "message", "created_at", "read")
 
     # readonly fields to show in the panel
     readonly_fields = ('created_at',)

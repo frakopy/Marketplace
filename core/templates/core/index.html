@@ -2,17 +2,7 @@
 
 {% block title %}Home Page{% endblock title %}
 
-{% block content %}
-
-    <!-- {% if request.user.is_authenticated %}
-        <div class="container w-60">
-            <div class="alert alert-success alert-dismissible fade show d-flex justify-content-center" role="alert">
-                User loged in as <strong style="margin-left: 5px;">{{request.user.username}}</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        </div>
-    {% endif %} -->
-    
+{% block content %}    
     <div class="container">
         <h1 class="text-center mt-5 fst-normal mb-5" style="color: #537188">Newest Items</h1>
         <div class="container p-3 d-flex gap-5 flex-wrap justify-content-center" style="background-color: #EEEEEE">
@@ -43,10 +33,4 @@
             {% endfor %}
         </div>
     </div>
-    <script>
-        // Close the alert after 3 seconds
-        setTimeout(function() {
-            document.querySelector('.alert').remove();
-        }, 3000);
-    </script>
 {% endblock content %}

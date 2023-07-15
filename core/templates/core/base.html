@@ -8,6 +8,30 @@
     <title>{% block title %}{% endblock title %}</title>
 </head>
 <style>
+    .circle-number {
+        width: 1.5em;
+        height: 1.5em;
+        background-color: red;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        position: relative;
+    }
+
+    .inbox{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .inbox span{
+        position: absolute;
+        top: -1.2em;
+    }
+
     @media (max-width: 575px) {
         .cont-nav{
             display: flex !important;
@@ -23,7 +47,7 @@
     }
 </style>
 <body>
-    <div class="container d-flex justify-content-center">
+    <div class="container d-flex justify-content-center mt-1">
         <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width: 100%;">
             <div class="container-fluid cont-nav">
                 <a class="navbar-brand fst-italic" href="{% url 'home' %}" style="font-size: 2em;">
@@ -42,13 +66,18 @@
                                 <a class="btn btn-secondary" href="{% url 'dashboard:index' %}">Dashboard</a>
                             </li>    
                             <li class="nav-item">
-                                <a class="btn btn-primary" href="{% url 'conversation:inbox' %}">Inbox</a>
+                                <a class="{% if num_messages %}new-messages{% endif %} inbox btn btn-primary text" href="{% url 'conversation:inbox' %}">
+                                    Inbox
+                                    {% if num_messages %}
+                                        <span class="circle-number new-messages">{{num_messages}}</span>
+                                    {% endif %}
+                                </a>
                             </li>
                             <li class="nav-item">
                                 <a class="btn btn-secondary" href="{% url 'logout' %}">Logout</a>
                             </li>    
                             <li class="nav-item">
-                                <i class="bi bi-person-fill" style="font-size: 1.5em; color:#FF8551">
+                                <i class="bi bi-person-fill" style="font-size: 1.5em; color:#38E54D">
                                     {{request.user}}
                                 </i>
                             </li>    
@@ -63,9 +92,43 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav>     
+        {% if messages %}
+        <ul class="list-unstyled">
+        {% for message in messages %}
+            <li class=
+                    "alert text-center 
+                    {% if message.tags == 'error' %}alert-danger
+                    {% elif message.tags == 'success' %}alert-success
+                    {% elif message.tags == 'warning' %}alert-warning
+                    {% else %}alert-info{% endif %}">
+            {{ message }}
+            </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
     </div>
+
+    <!-- Information about new messages -->
+    <div id="messages-cont" class="container d-none">
+        {% for message in filtered_messages %}
+            <ul class="me-5">
+                <li style="list-style: none;">
+                    <a href="{% url 'conversation:detail' message.conversation_id %}" style="text-decoration: none;">
+                        From {{message.sender}} about {{message.conversation.item}}
+                    </a>
+                </li>
+            </ul>        
+        {% endfor %}
+        <a href="{% url 'conversation:inbox' %}" style="text-decoration: none; color: #F94A29;">
+            <strong>Go to inbox <i class="bi bi-envelope" style="font-size: 1.3em;"></i></strong>
+        </a>
+    </div>
+    
+    <!-- Block content for templates -->
     {% block content %}{% endblock content %}
+    <!-- End of block content -->
+
     <!-- Footer --> 
     <div class="mt-5">
         <footer class="text-center text-white" style="background-color: #3f51b5">
@@ -134,6 +197,32 @@
             </div>
         </footer>
     </div>
+    <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!-- SweetAlert -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Custom Script -->
+    <script>
+        const inbox = document.getElementsByClassName("inbox")[0];
+        const messageContainer = document.getElementById("messages-cont");
+
+        console.log(messageContainer.innerHTML);
+
+        inbox.addEventListener("click", (e) => { 
+            if (e.target.classList.contains("new-messages")) {
+                e.preventDefault();
+
+                Swal.fire({
+                    title: '<h1>New Messages:</h1>',
+                    html:messageContainer.innerHTML,
+                    showCloseButton: true,
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    focusConfirm: false,
+                })
+            }
+        })
+    </script>
 </body>
 </html>
