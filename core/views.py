@@ -47,6 +47,7 @@ def signup_view(request):
     if request.method == "POST":
         if form.is_valid():
             form.save()
+            messages.success(request, 'User successfully created, use your credentials for logging in')
             return redirect('login')
 
     return render(request, "core/signup.html", {"form": form})

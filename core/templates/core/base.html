@@ -93,20 +93,6 @@
                 </div>
             </div>
         </nav>     
-        {% if messages %}
-        <ul class="list-unstyled">
-        {% for message in messages %}
-            <li class=
-                    "alert text-center 
-                    {% if message.tags == 'error' %}alert-danger
-                    {% elif message.tags == 'success' %}alert-success
-                    {% elif message.tags == 'warning' %}alert-warning
-                    {% else %}alert-info{% endif %}">
-            {{ message }}
-            </li>
-        {% endfor %}
-        </ul>
-        {% endif %}
     </div>
 
     <!-- Information about new messages -->
