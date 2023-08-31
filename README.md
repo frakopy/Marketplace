@@ -32,19 +32,24 @@ This is a README file for a marketplace web application built using Django, Java
 
 `pip install -r requirements.txt`
 
-3. Set up the database by applying migrations:    
+4. Create the following enviroment variables in a .env file
+   SECRET_KEY="your-secret-key"
+   DEBUG="True or False"
+   DB_NAME="Your-db-name"
+
+5. Set up the database by applying migrations:    
 
 `python manage.py migrate`
 
-4. Create a superuser account to access the admin dashboard:    
+6. Create a superuser account to access the admin dashboard:    
 
 `python manage.py createsuperuser`
 
-5. Start the development server:    
+7. Start the development server:    
 
 `python manage.py runserver`  
 
-6. Access the web application by visiting http://localhost:8000 in your web browser.
+8. Access the web application by visiting http://localhost:8000 in your web browser.
 
 ## Usage
 1. Open the web application in your browser.
