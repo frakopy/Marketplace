@@ -33,9 +33,9 @@ This is a README file for a marketplace web application built using Django, Java
 `pip install -r requirements.txt`
 
 4. Create the following enviroment variables in a .env file
-   SECRET_KEY="your-secret-key"
-   DEBUG="True or False"
-   DB_NAME="Your-db-name"
+   `SECRET_KEY="your-secret-key"`  
+   `DEBUG="True or False"`  
+   `DB_NAME="Your-db-name"`  
 
 5. Set up the database by applying migrations:    
 
